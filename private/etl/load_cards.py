@@ -6,10 +6,10 @@ from tqdm import tqdm
 
 # --- CONFIGURATION ---
 SUPABASE_URL = os.getenv("SUPABASE_URL", "https://eycwwbgymeuggayeifce.supabase.co")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_KEY")
 
-if not SUPABASE_KEY:
-    raise RuntimeError("SUPABASE_KEY environment variable must be set before running this script.")
+if not SUPABASE_SERVICE_KEY:
+    raise RuntimeError("SUPABASE_SERVICE_KEY environment variable must be set before running this script.")
 
 # The specific GitHub URL you provided
 EXTERNAL_SETS_URL = "https://raw.githubusercontent.com/the-fab-cube/flesh-and-blood-cards/refs/heads/develop/json/english/set.json"
@@ -24,8 +24,8 @@ BATCH_SIZE = 50
 client = httpx.Client(timeout=30.0)
 
 headers = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "apikey": SUPABASE_SERVICE_KEY,
+    "Authorization": f"Bearer {SUPABASE_SERVICE_KEY}",
     "Content-Type": "application/json",
     "Prefer": "resolution=merge-duplicates" # This handles the 'Upsert'
 }

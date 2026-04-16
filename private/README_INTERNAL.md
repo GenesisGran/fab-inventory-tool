@@ -31,7 +31,15 @@ This folder contains the private internal workspace used to maintain, build, and
 
 - The public `.exe` builds in `dist/` are intended to run standalone.
 - Internal scripts in `private/etl/` should only be run locally by the maintainer.
-- The internal ETL code may use hard-coded credentials and local file paths.
+- The internal ETL code may use environment variables for credentials.
+
+### Supabase credentials
+
+- `SUPABASE_URL` — optional override for the Supabase endpoint.
+- `SUPABASE_KEY` — anonymous/limited key used by `src/inventory/input_inventory.py`.
+- `SUPABASE_SERVICE_KEY` — admin/service role key used by `private/etl/load_cards.py`.
+
+Create a local `.env` file for these values, but do not commit it.
 
 ## GitHub policy
 
