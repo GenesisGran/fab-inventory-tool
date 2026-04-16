@@ -1,10 +1,14 @@
 import httpx
+import os
 from datetime import datetime
 import sys
 
 # --- CONFIGURATION ---
-SUPABASE_URL = "https://eycwwbgymeuggayeifce.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV5Y3d3Ymd5bWV1Z2dheWVpZmNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxNDExNzIsImV4cCI6MjA5MTcxNzE3Mn0.X4s3QAE5sVP8ee6DRCLY6Xpf6AKZBX5MIBcWBTP65oI"
+SUPABASE_URL = os.getenv("SUPABASE_URL", "https://eycwwbgymeuggayeifce.supabase.co")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+
+if not SUPABASE_KEY:
+    raise RuntimeError("SUPABASE_KEY environment variable must be set before running this script.")
 
 headers = {
     "apikey": SUPABASE_KEY,

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Majestic",
+    "code": "M"
+  },
+  {
+    "name": "Common",
+    "code": "C"
+  },
+  {
+    "name": "Marvel",
+    "code": "U"
+  },
+  {
+    "name": "Promo",
+    "code": "P"
+  },
+  {
+    "name": "Super Rare",
+    "code": "S"
+  },
+  {
+    "name": "Rare",
+    "code": "R"
+  },
+  {
+    "name": "Legendary",
+    "code": "L"
+  },
+  {
+    "name": "Token",
+    "code": "T"
+  },
+  {
+    "name": "Basic",
+    "code": "U"
+  },
+  {
+    "name": "Fabled",
+    "code": "F"
+  }
+]
