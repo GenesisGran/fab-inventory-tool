@@ -1,12 +1,19 @@
 # FAB Inventory Tool
 
-This repository contains the public distribution for the FAB Inventory Tool.
+A polished distribution for a Flesh and Blood inventory manager built for data workflows.
 
-## Public distribution
+## What is included here
 
-- `dist/` contains the user-facing `.exe` files.
-- Users should run the `.exe` directly.
-- No Python environment or dependencies should be required for the packaged build.
+This public repo includes the user-facing deliverable and a portfolio-ready project summary.
+
+- `dist/` — user-accessible Windows executable builds
+- `README.md` — public-facing project overview
+- `PORTFOLIO.md` — portfolio project summary and architecture
+
+## What is not public
+
+- `private/` contains internal ETL, packaging, metadata, and maintenance files
+- `private/` is not needed by end users and should remain local
 
 ## Run the tool
 
@@ -16,8 +23,18 @@ Open `dist/` and run the latest executable, for example:
 ./dist/FAB_Inventory_Tool_0.0.04.exe
 ```
 
-## Notes for users
+## User notes
 
-- The `.exe` is built to run standalone on Windows.
-- It may require internet access if it connects to Supabase.
-- The app does not expose the internal ETL workflows or private maintenance files.
+- The `.exe` is packaged to run standalone on Windows.
+- Internet access is required if it connects to the Supabase backend.
+- The user-facing tool is designed for batch inventory entry and search, without requiring Python.
+
+## Portfolio value
+
+This repo demonstrates a data-focused project with:
+
+- ETL workflow for card metadata and pricing data
+- data modeling for inventory and prints
+- API integration with Supabase
+- user-friendly executable distribution
+- documentation for both public and private maintenance
