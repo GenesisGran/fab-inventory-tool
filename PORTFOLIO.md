@@ -2,61 +2,61 @@
 
 ## Project summary
 
-This project is a data-driven inventory manager for Flesh and Blood card collections.
-It combines a user-friendly inventory input tool with an ETL workflow that syncs card metadata and inventory data to Supabase.
+A data-focused inventory manager for Flesh and Blood card collections with a shared Supabase backend.
+This project combines metadata ETL, inventory tracking, and a packaged desktop experience for non-technical users.
+
+## Project highlights
+
+- Centralized Supabase inventory backend for collaborative updates
+- Additive `qty_change` model for inventory adjustments
+- Monthly metadata refresh pipeline from GitHub card data
+- Packaged Windows executable for easy distribution
+- Clear separation of public deliverable and private maintenance
 
 ## Problem solved
 
-- Track owned cards, set codes, classes, and foiling
-- Record card quantities as incremental changes (`+` and `-`)
-- Allow friends to upsert inventory without learning code
-- Maintain a centralized Supabase database for all users
-- Keep the public distribution simple with a standalone Windows `.exe`
+- Track cards by set, foil, class, and quantity
+- Record ownership changes as increments rather than overwrites
+- Let friends upsert inventory without learning Python
+- Maintain a clean, centralized card database
+- Keep the deliverable simple with an `.exe`
 
-## Key components
+## What I built
 
-- `dist/`
-  - user-facing packaged executables for Windows
 - `src/inventory/input_inventory.py`
-  - inventory input tool that appends quantity changes and supports batch entry
+  - user-facing CLI for inventory entry and search
+  - batch-safe additive inventory updates
 - `private/etl/load_cards.py`
-  - internal ETL script to pull card metadata from GitHub and sync it to Supabase
+  - internal loader that syncs card metadata into Supabase
+- `private/js/export.mjs`
+  - metadata export step for local JSON generation
 - `private/data/`
-  - local card metadata files used by internal workflows
-- `private/README_INTERNAL.md`
-  - maintenance notes, credential guidance, and run commands
+  - local metadata files for cards, sets, rarities, and printings
+- `dist/`
+  - packaged executable builds for end users
 
 ## Data workflow
 
-1. Fetch card metadata from GitHub
-2. Normalize sets, rares, cards, and printings
-3. Load metadata into Supabase with the service role key
-4. Allow users to submit inventory changes via the `.exe` or CLI
-5. Store inventory `qty_change` records instead of overwriting totals
-6. View inventory totals by aggregating per card print
+1. Export card metadata from the external card dataset
+2. Load local JSON files and normalize metadata
+3. Sync sets, rarities, cards, and printings to Supabase
+4. Use the inventory tool to submit `qty_change` records
+5. Aggregate inventory totals by print and user
 
 ## Tools and technologies
 
 - Python
-- HTTPX for REST API calls
-- Supabase as the backend database
-- PyInstaller for building Windows executables
+- HTTPX for REST API access
+- Supabase for the backend database
+- PyInstaller for Windows packaging
 - GitHub for project versioning
 
-## What this demonstrates
+## How to run the flows
 
-- data ingestion from external APIs
-- ETL design and metadata normalization
-- database-backed inventory tracking
-- user-friendly deployment with a packaged executable
-- secure handling of credentials via environment variables
-- documentation for both public and private use
-
-## How to run the main flows
-
-### Monthly metadata update
+### Monthly metadata refresh
 
 ```powershell
+node private/js/export.mjs
 python private/etl/load_cards.py
 ```
 
@@ -66,20 +66,18 @@ python private/etl/load_cards.py
 python src/inventory/input_inventory.py
 ```
 
-or run the packaged executable found in `dist/`.
+or run the packaged executable from `dist/`.
 
-## Portfolio story
+## Why this is a strong portfolio project
 
-This project is a good showcase for data roles because it combines:
+- demonstrates ETL and data pipeline design
+- shows practical backend integration with Supabase
+- highlights productization with a user-friendly executable
+- models inventory as additive event data, not destructive state
+- documents both public delivery and private maintenance
 
-- real-world data modeling
-- API-driven ETL
-- backend database management
-- packaging and distribution for non-technical users
-- collaborative data input via Supabase
+## Notes for presentation
 
-## Notes for portfolio presentation
-
-- Emphasize that the inventory input tool is additive (`qty_change`) and not destructive.
-- Highlight the separation of public distribution and private maintenance.
-- Note that the `.exe` is designed for friends to run without setup.
+- Use `README.md` as the main recruiter-facing summary.
+- Link to `PORTFOLIO.md` for deeper architecture and workflow details.
+- Emphasize the data engineering value: ETL, data sync, schema design, and delivery.

@@ -1,40 +1,48 @@
 # FAB Inventory Tool
 
-A polished distribution for a Flesh and Blood inventory manager built for data workflows.
+Standalone Windows inventory manager for Flesh and Blood cards with a Supabase-backed data workflow.
+
+## What this repo is for
+
+This repository is a portfolio-ready project that demonstrates a complete data workflow:
+
+- a user-facing `.exe` for non-technical inventory entry
+- an internal ETL pipeline for card metadata syncing
+- a Supabase database backend for collaborative inventory tracking
+- clear public/private separation for production and maintenance
+
+## Project highlights
+
+- Shared inventory system with Supabase backend
+- Additive inventory changes (`qty_change`) instead of destructive updates
+- Monthly metadata refresh from GitHub card data
+- Packaged Windows executable so friends can use the tool without installing Python
+- Documentation and portfolio case study for data roles
 
 ## What is included here
 
-This public repo includes the user-facing deliverable and a portfolio-ready project summary.
-
-- `dist/` — user-accessible Windows executable builds
+- `dist/` — packaged Windows executable builds
 - `README.md` — public-facing project overview
-- `PORTFOLIO.md` — portfolio project summary and architecture
+- `PORTFOLIO.md` — deeper case study and architecture
+- `private/` — internal maintenance files and ETL workflows (kept local)
 
-## What is not public
+## Quick start
 
-- `private/` contains internal ETL, packaging, metadata, and maintenance files
-- `private/` is not needed by end users and should remain local
-
-## Run the tool
-
-Open `dist/` and run the latest executable, for example:
+Open `dist/` and run the latest executable:
 
 ```powershell
 ./dist/FAB_Inventory_Tool_0.0.04.exe
 ```
 
-## User notes
+If you want to run the source tool instead:
 
-- The `.exe` is packaged to run standalone on Windows.
-- Internet access is required if it connects to the Supabase backend.
-- The user-facing tool is designed for batch inventory entry and search, without requiring Python.
+```powershell
+python src/inventory/input_inventory.py
+```
 
-## Portfolio value
+## Notes for reviewers
 
-This repo demonstrates a data-focused project with:
-
-- ETL workflow for card metadata and pricing data
-- data modeling for inventory and prints
-- API integration with Supabase
-- user-friendly executable distribution
-- documentation for both public and private maintenance
+- The `.exe` is designed to work standalone on Windows.
+- `private/.env` is local and not included in the repo.
+- `private/` contains internal ETL and maintenance scripts, not the user deliverable.
+- See `PORTFOLIO.md` for the full data architecture and workflow.
