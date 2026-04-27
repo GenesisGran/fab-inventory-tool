@@ -17,7 +17,7 @@ This project combines metadata ETL, inventory tracking, and a packaged desktop e
 
 - Track cards by set, foil, class, and quantity
 - Record ownership changes as increments rather than overwrites
-- Let friends upsert inventory without learning Python
+- Let users upsert inventory without learning Python
 - Maintain a clean, centralized card database
 - Keep the deliverable simple with an `.exe`
 
@@ -67,17 +67,3 @@ python src/inventory/input_inventory.py
 ```
 
 or run the packaged executable from `dist/`.
-
-## Why this is a strong portfolio project
-
-- demonstrates ETL and data pipeline design
-- shows practical backend integration with Supabase
-- highlights productization with a user-friendly executable
-- models inventory as additive event data, not destructive state
-- documents both public delivery and private maintenance
-
-## Notes for presentation
-
-- Use `README.md` as the main recruiter-facing summary.
-- Link to `PORTFOLIO.md` for deeper architecture and workflow details.
-- Emphasize the data engineering value: ETL, data sync, schema design, and delivery.
