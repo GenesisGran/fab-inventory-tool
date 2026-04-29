@@ -1,48 +1,36 @@
-# FAB Inventory Tool
+# FAB Inventory Tool: Backend & ETL Pipeline
 
-Standalone Windows inventory manager for Flesh and Blood cards with a Supabase-backed data workflow.
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
+[![Supabase](https://img.shields.io/badge/Database-Supabase-green.svg)](https://supabase.com/)
+[![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey.svg)](https://github.com/GenesisGran/fab-inventory-tool/releases)
 
-## What this repo is for
+A standalone Windows administrative suite designed to manage a high-fidelity inventory for Flesh and Blood TCG. This repository houses the **Admin/Write** side of the FAB Vault ecosystem, focusing on data integrity, automated master data synchronization, and ETL workflows.
 
-This repository is a portfolio-ready project that demonstrates a complete data workflow:
+## 🏗️ Architecture & Data Workflow
+This project acts as the **ETL (Extract, Transform, Load)** engine for the inventory system:
+* **Extraction:** Pulls the latest card metadata (JSON/CSV) from community-maintained data sources.
+* **Transformation:** Normalizes card identifiers, handles specific print variants (e.g., Cold Foil vs. Rainbow Foil), and prepares records for Upserting.
+* **Loading:** Syncs local changes to a remote **Supabase (PostgreSQL)** instance via a secure Python-based pipeline.
 
-- a user-facing `.exe` for non-technical inventory entry
-- an internal ETL pipeline for card metadata syncing
-- a Supabase database backend for collaborative inventory tracking
-- clear public/private separation for production and maintenance
+## 🚀 Key Features
+* **Safe-Write Logic:** Implements additive inventory changes (`qty_change`) instead of destructive updates to prevent accidental data loss.
+* **Automated Master Data Sync:** The `load_cards.py` script serves as a maintenance pipeline to refresh card metadata without downtime.
+* **Windows Distribution:** Packaged using **PyInstaller**, allowing for a portable `.exe` that friends or collaborators can use without needing a Python environment.
+* **Security by Design:** Separates administrative write-access scripts from the public-facing web repository.
 
-## Project highlights
+## 📂 Project Structure
+* `/src`: Core Python logic for inventory input and data validation.
+* `/dist`: Production-ready Windows executable builds.
+* `load_cards.py`: The ETL script responsible for updating Supabase master tables.
+* `PORTFOLIO.md`: A deep-dive case study on the data architecture and schema design.
 
-- Shared inventory system with Supabase backend
-- Additive inventory changes (`qty_change`) instead of destructive updates
-- Monthly metadata refresh from GitHub card data
-- Packaged Windows executable so friends can use the tool without installing Python
-- Documentation and portfolio case study for data roles
+## 🛠️ Quick Start
 
-## What is included here
+**To run the latest stable tool on Windows:**
+1. Navigate to `/dist/`.
+2. Launch the latest `.exe` file.
 
-- `dist/` — packaged Windows executable builds
-- `README.md` — public-facing project overview
-- `PORTFOLIO.md` — deeper case study and architecture
-- `private/` — internal maintenance files and ETL workflows (kept local)
-
-## Quick start
-
-Open `dist/` and run the latest executable:
-
+**To run from source:**
 ```powershell
-./dist/FAB_Inventory_Tool_0.0.04.exe
-```
-
-If you want to run the source tool instead:
-
-```powershell
+pip install -r requirements.txt
 python src/inventory/input_inventory.py
-```
-
-## Notes for reviewers
-
-- The `.exe` is designed to work standalone on Windows.
-- `private/.env` is local and not included in the repo.
-- `private/` contains internal ETL and maintenance scripts, not the user deliverable.
-- See `PORTFOLIO.md` for the full data architecture and workflow.
